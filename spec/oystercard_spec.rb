@@ -91,9 +91,9 @@ let(:station) {double :station}
         oyster.top_up(20)
       end
     it "Should allow user to view history" do
-      oyster.touch_in(station)
-      oyster.touch_out(station)
-      expect(oyster.journey_history).to return({"Journey 1" => [station, station]})
+      oyster.touch_in("Canary Wharf")
+      oyster.touch_out("Oxford Circus")
+      expect(oyster.journey_history).to eq ({"Journey 1" => ["Canary Wharf", "Oxford Circus"]})
       end
     end
   end

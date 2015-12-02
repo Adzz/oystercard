@@ -91,14 +91,13 @@ describe "User stories" do
   # As a customer
   # I want to see to all my previous trips
 
-  it "So that I know where I've been, I wanted to see my previous trips" do
-    oyster = Oystercard.new
-    oyster.top_up(10)
-    oyster.touch_in("Canary Wharf")
-    oyster.touch_out("Oxford Circus")
-    expect(oyster.journey_history).to eq {"Journey 1" => ["Canary Wharf", "Oxford Circus"]}
-  end
-
+  # it "So that I know where I've been, I wanted to see my previous trips" do
+  #   oyster = Oystercard.new
+  #   oyster.top_up(10)
+  #   oyster.touch_in("Canary Wharf")
+  #   oyster.touch_out("Oxford Circus")
+  #   expect(oyster.journey_history).to eq {"Journey1" => [entry_station, exit_station]}
+  # end
 
 
 
