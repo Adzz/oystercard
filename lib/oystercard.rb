@@ -11,7 +11,6 @@ class Oystercard
   def initialize
     @balance = DEFAULT_BALANCE
     @journey_history = {}
-    @journey_log = []
     @journey_number = 0
   end
 
@@ -33,14 +32,15 @@ class Oystercard
     @journey_history.merge!("Journey #{@journey_number}"=>[@entry_station, @exit_station])
   end
 
+
   def touch_out(station)
     deduct(MIN_FARE)
-    @journey_number += 1
+    incriment_journey_number
     @exit_station = station
     record_history
-    @entry_station = nil
-
+    reset_entry_station
   end
+
 
   def in_journey?
     !!entry_station
@@ -55,5 +55,16 @@ private
     @balance -= amount
   end
 
+  def reset_entry_station
+      @entry_station = nil
+    end
+
+  def incriment_journey_number
+    @journey_number += 1
+  end
+
+  def method_name
+
+  end
 
 end
