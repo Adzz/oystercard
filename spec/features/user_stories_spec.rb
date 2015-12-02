@@ -91,16 +91,31 @@ describe "User stories" do
   # As a customer
   # I want to see to all my previous trips
 
-  # it "So that I know where I've been, I wanted to see my previous trips" do
-  #   oyster = Oystercard.new
-  #   oyster.top_up(10)
-  #   oyster.touch_in("Canary Wharf")
-  #   oyster.touch_out("Oxford Circus")
-  #   expect(oyster.journey_history).to eq @journey_history
-  #  end
+  it "So tht I can see my previous trips, I need to record the complete travel history" do
+    oyster = Oystercard.new
+    oyster.top_up(10)
+    oyster.touch_in("Canary Wharf")
+    oyster.touch_out("Oxford Circus")
+    oyster.touch_in("Whitechappel")
+    oyster.touch_out("Knightsbridge")
+    expect(oyster.journey_history).to eq ({"Journey 1" => ["Canary Wharf", "Oxford Circus"],
+                                           "Journey 2" => ["Whitechappel", "Knightsbridge"]})
+  end
 
 
+  # In order to know how far I have travelled
+  # As a customer
+  # I want to know what zone a station is in
 
+  it "So I can know how far I travel, I want to know the zone of a station" do
+    station = Station.new("Kings Cross", "1")
+    expect(station.zone).to eq "1"
+  end
+
+  it "So I can know where I travel, I want to know the name of a station" do
+    station = Station.new("Kings Cross", "1")
+    expect(station.name).to eq "Kings Cross"
+  end
 
 
 

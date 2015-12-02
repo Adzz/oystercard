@@ -1,4 +1,4 @@
-
+require_relative "station"
 
 class Oystercard
 
@@ -19,24 +19,16 @@ class Oystercard
     @balance += amount
   end
 
-  def limit_reached?(amount)
-    (@balance + amount) >= 90
-  end
 
   def touch_in(station)
     fail "Insufficient funds: you need at least £#{MIN_FARE} to travel" if insufficient_funds?
     @entry_station = station
   end
 
-  def record_history
-    @journey_history.merge!("Journey #{@journey_number}"=>[@entry_station, @exit_station])
-  end
-
-
   def touch_out(station)
     deduct(MIN_FARE)
-    incriment_journey_number
     @exit_station = station
+    incriment_journey_number
     record_history
     reset_entry_station
   end
@@ -47,12 +39,21 @@ class Oystercard
   end
 
 private
+
+  def limit_reached?(amount)
+    (@balance + amount) >= 90
+  end
+
   def insufficient_funds?
     @balance < MIN_FARE
   end
 
   def deduct(amount)
     @balance -= amount
+  end
+
+  def record_history
+    @journey_history.merge!("Journey #{@journey_number}"=>[@entry_station, @exit_station])
   end
 
   def reset_entry_station
@@ -63,8 +64,5 @@ private
     @journey_number += 1
   end
 
-  def method_name
-
-  end
 
 end
