@@ -5,7 +5,7 @@ subject(:oyster) { described_class.new }
 let(:station) {double :station}
 
 
-  describe 'default' do
+  describe '#Default' do
     it "Should have a default balance of zero" do
       expect(oyster.balance).to eq 0
     end
@@ -97,4 +97,22 @@ let(:station) {double :station}
       end
     end
   end
+
+  describe "#journey_history" do
+    context "Has money on Card" do
+      before do
+        oyster.top_up(20)
+      end
+
+      it "Records the complete travel history of users" do
+        oyster.touch_in("Canary Wharf")
+        oyster.touch_out("Oxford Circus")
+        oyster.touch_in("Whitechappel")
+        oyster.touch_out("Knightsbridge")
+        expect(oyster.journey_history).to eq ({"Journey 1" => ["Canary Wharf", "Oxford Circus"],
+                                               "Journey 2" => ["Whitechappel", "Knightsbridge"]})
+      end
+    end
+  end
+
 end

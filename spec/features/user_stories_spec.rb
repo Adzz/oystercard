@@ -96,8 +96,8 @@ describe "User stories" do
   #   oyster.top_up(10)
   #   oyster.touch_in("Canary Wharf")
   #   oyster.touch_out("Oxford Circus")
-  #   expect(oyster.journey_history).to eq {"Journey1" => [entry_station, exit_station]}
-  # end
+  #   expect(oyster.journey_history).to eq @journey_history
+  #  end
 
 
 
